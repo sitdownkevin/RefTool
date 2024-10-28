@@ -1,9 +1,9 @@
 from dotenv import find_dotenv, load_dotenv
 import os
 
-assert load_dotenv(find_dotenv())
-assert os.getenv('OPENAI_API_KEY')
-assert os.getenv('OPENAI_BASE_URL')
+# assert load_dotenv(find_dotenv())
+# assert os.getenv('OPENAI_API_KEY')
+# assert os.getenv('OPENAI_BASE_URL')
 
 import streamlit as st
 import pandas as pd
