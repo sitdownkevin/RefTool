@@ -1,6 +1,7 @@
 from dotenv import find_dotenv, load_dotenv
 import os
 
+load_dotenv(find_dotenv())
 # assert load_dotenv(find_dotenv())
 # assert os.getenv('OPENAI_API_KEY')
 # assert os.getenv('OPENAI_BASE_URL')
