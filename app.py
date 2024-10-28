@@ -1,15 +1,24 @@
-from dotenv import find_dotenv, load_dotenv
 import os
+from openai import OpenAI
 
-load_dotenv(find_dotenv())
-# assert load_dotenv(find_dotenv())
-# assert os.getenv('OPENAI_API_KEY')
-# assert os.getenv('OPENAI_BASE_URL')
+if os.getenv('PRODUCTION'):
+    client = OpenAI(
+        api_key=os.getenv('OPENAI_API_KEY'),
+        base_url=os.getenv('OPENAI_BASE_URL')
+    )
+else:
+    from dotenv import find_dotenv, load_dotenv
+    load_dotenv(find_dotenv())
+    assert load_dotenv(find_dotenv())
+    assert os.getenv('OPENAI_API_KEY')
+    assert os.getenv('OPENAI_BASE_URL')
+    
+    client = OpenAI()
 
 import streamlit as st
 import pandas as pd
 import ell
-from openai import OpenAI
+
 
 st.set_page_config(page_title="速读文献摘要", 
                    page_icon="./public/logo.png")
@@ -40,7 +49,7 @@ MODEL_NAME = st.sidebar.selectbox(
 
 # 初始化ell客户端
 # ell.init(store='./logdir', autocommit=True, verbose=False)
-client = OpenAI()
+
 
 if not MODEL_NAME:
     st.warning("请设置模型")
